@@ -23,8 +23,7 @@ GLfloat LightPosition[]= { 5.0f, 25.0f, 15.0f, 1.0f };
 GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
 
 static int light_state = 1; // light on = 1, light off = 0
-static int view_state = 1; // Ortho view = 1, Perspective = 0
-
+static int view_state = 1; //
 void Sprint( float x, float y, char *st)
 {
 	int l,i;
@@ -112,11 +111,11 @@ void Draw_clock( GLfloat cx, GLfloat cy, GLfloat cz )
   glTranslatef(cx,cy,cz);
   glRotatef( 180, 1.0, 0.0, 0.0);
 
-  /*glPushMatrix(); // Draw large wire cube (outside of disk clock)
+  glPushMatrix(); // Draw large wire cube (outside of disk clock)
   glColor3f(1.0, 1.0, 1.0);
   glTranslatef( 0.0, 0.0, 6.0);
   glutWireCube(14.0);
-  glPopMatrix();*/
+  glPopMatrix();
 
   glPushMatrix(); // Draw clock face
   glTranslatef( 0, 0, 1.0);
@@ -203,14 +202,7 @@ void num()
 
 void about()
 {
-    //glClear(GL_COLOR_BUFFER_BIT);
-	glColor3f( 1.0, 1.0, 1.0);
-    Sprint(-5,-2,"This project implements the clock");
-	Sprint(-5,-2.8,"   Both Wall clock and digit clock");
-	Sprint(-5,-3.6,"               is displayed");
-    Sprint(-5,-4.4,"   Clock shows the local time");
-	Sprint(-5,-5.2,"    fetching from computer");
-	//glFlush();
+
 }
 
 void display_clock()
@@ -294,18 +286,6 @@ void options(int id)
  switch(id)
  {
 
-  case 1:
-	  glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-	about_int= abs(about_int - 1);
-	  break;
-  case 2:
-	  glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-	  view_state = abs(view_state - 1);
-	  break;
-  case 3:
-	  glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-	   light_state = abs(light_state - 1);
-      break;
   case 4 :
 	  exit(0);
  }
@@ -321,9 +301,6 @@ int main(int argc, char** argv)
    glutSetWindowTitle("GLclock");
    init ();
    glutCreateMenu(options);
-   glutAddMenuEntry("About the Project",1);
-   glutAddMenuEntry("Toggle Ortho/Perspective view",2);
-   glutAddMenuEntry("Light on/off",3);
    glutAddMenuEntry("Quit",4);
    glutAttachMenu(GLUT_RIGHT_BUTTON);
    glutDisplayFunc(display);
